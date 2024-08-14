@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @DataJpaTest(showSql = true)
 @TestPropertySource("classpath:test-application.properties")
-@Sql("/sql/user-service-test-data.sql")
+@Sql("/sql/user-repository-test-data.sql")
 class UserRepositoryTest {
 
     @Autowired
