@@ -2,11 +2,15 @@ package com.example.demo.post.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import com.example.demo.common.serivce.port.ClockHolder;
+import com.example.demo.mock.TestClockHolder;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import org.junit.jupiter.api.Test;
 
 public class PostTest {
+
+    private final ClockHolder clockHolder = new TestClockHolder(123456L);
 
     @Test
     public void PostCreate으로_게시물을_만들_수_있다() {
@@ -25,10 +29,11 @@ public class PostTest {
                 .build();
 
         // when
-        Post post = Post.from(writer, postCreate);
+        Post post = Post.from(writer, postCreate, clockHolder);
 
         // then
         assertThat(post.getContent()).isEqualTo("helloworld");
+        assertThat(post.getCreatedAt()).isEqualTo(123456L);
         assertThat(post.getWriter().getEmail()).isEqualTo("jeongdalma@gmail.com");
         assertThat(post.getWriter().getNickname()).isEqualTo("jeongdalma");
         assertThat(post.getWriter().getAddress()).isEqualTo("Seoul");
@@ -58,10 +63,11 @@ public class PostTest {
                 .build();
 
         // when
-        post = post.update(postUpdate);
+        post = post.update(postUpdate, clockHolder);
 
         // then
         assertThat(post.getContent()).isEqualTo("foobar");
-        assertThat(post.getModifiedAt()).isEqualTo(1679530673958L);
+        assertThat(post.getCreatedAt()).isEqualTo(1678530673958L);
+        assertThat(post.getModifiedAt()).isEqualTo(123456L);
     }
 }

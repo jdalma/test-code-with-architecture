@@ -2,11 +2,27 @@ package com.example.demo.user.controller.response;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import com.example.demo.mock.FakeMailSender;
+import com.example.demo.mock.FakeUserRepository;
+import com.example.demo.mock.TestClockHolder;
+import com.example.demo.mock.TestUuidHolder;
+import com.example.demo.post.service.PostService;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
+import com.example.demo.user.service.CertificationService;
+import com.example.demo.user.service.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MyProfileResponseTest {
+
+    private PostService postService;
+
+    @BeforeEach
+    void setUp() {
+
+
+    }
 
     @Test
     public void User으로_응답을_생성할_수_있다() {

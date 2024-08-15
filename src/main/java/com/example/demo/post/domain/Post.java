@@ -1,7 +1,7 @@
 package com.example.demo.post.domain;
 
+import com.example.demo.common.serivce.port.ClockHolder;
 import com.example.demo.user.domain.User;
-import com.example.demo.user.infrastructure.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -22,20 +22,20 @@ public class Post {
         this.writer = writer;
     }
 
-    public static Post from(User writer, PostCreate postCreate) {
+    public static Post from(User writer, PostCreate postCreate, ClockHolder clockHolder) {
         return Post.builder()
                 .content(postCreate.getContent())
                 .writer(writer)
-                .createdAt(System.currentTimeMillis())
+                .createdAt(clockHolder.millis())
                 .build();
     }
 
-    public Post update(PostUpdate postUpdate) {
+    public Post update(PostUpdate postUpdate, ClockHolder clockHolder) {
         return Post.builder()
                 .id(id)
                 .content(postUpdate.getContent())
                 .createdAt(createdAt)
-                .modifiedAt(System.currentTimeMillis())
+                .modifiedAt(clockHolder.millis())
                 .writer(writer)
                 .build();
     }

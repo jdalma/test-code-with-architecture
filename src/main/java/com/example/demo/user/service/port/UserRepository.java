@@ -7,11 +7,13 @@ import java.util.Optional;
 
 public interface UserRepository {
 
+    User getById(long id);
+
     Optional<User> findByIdAndStatus(long id, UserStatus userStatus);
 
     Optional<User> findByEmailAndStatus(String email, UserStatus userStatus);
 
     Optional<User> findById(long id);
 
-    User save(User userEntity);
+    User save(User user);
 }
