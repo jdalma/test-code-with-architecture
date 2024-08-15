@@ -3,10 +3,10 @@ package com.example.demo.user.service;
 
 import com.example.demo.common.domain.exception.CertificationCodeNotMatchedException;
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
+import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.UserCreate;
 import com.example.demo.user.domain.UserUpdate;
-import com.example.demo.user.infrastructure.UserEntity;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -36,7 +36,7 @@ class UserServiceTest {
 
     @Test
     void getByEmail은_ACTIVE_상태인_유저를_찾아올_수_있다() {
-        UserEntity result = userService.getByEmail("jeongdalma@gmail.com");
+        User result = userService.getByEmail("jeongdalma@gmail.com");
 
         Assertions.assertThat(result.getNickname()).isEqualTo("jeongdalma");
     }
@@ -51,7 +51,7 @@ class UserServiceTest {
 
     @Test
     void getById는_ACTIVE_상태인_유저를_찾아올_수_있다() {
-        UserEntity result = userService.getById(1L);
+        User result = userService.getById(1L);
 
         Assertions.assertThat(result.getNickname()).isEqualTo("jeongdalma");
     }
@@ -75,10 +75,10 @@ class UserServiceTest {
                 .when(javaMailSender)
                 .send(any(SimpleMailMessage.class));
 
-        UserEntity userEntity = userService.create(user);
+        User createdUser = userService.create(user);
 
-        Assertions.assertThat(userEntity.getId()).isNotNull();
-        Assertions.assertThat(userEntity.getStatus()).isEqualTo(UserStatus.PENDING);
+        Assertions.assertThat(createdUser.getId()).isNotNull();
+        Assertions.assertThat(createdUser.getStatus()).isEqualTo(UserStatus.PENDING);
         // UUID 값을 테스트하고 싶지만 현재 테스트할 수 있는 방법이 없음
     }
 
@@ -89,19 +89,19 @@ class UserServiceTest {
                 .nickname("test2")
                 .build();
 
-        UserEntity userEntity = userService.update(1L, update);
+        User user = userService.update(1L, update);
 
-        Assertions.assertThat(userEntity.getId()).isNotNull();
-        Assertions.assertThat(userEntity.getAddress()).isEqualTo("Busan");
-        Assertions.assertThat(userEntity.getNickname()).isEqualTo("test2");
+        Assertions.assertThat(user.getId()).isNotNull();
+        Assertions.assertThat(user.getAddress()).isEqualTo("Busan");
+        Assertions.assertThat(user.getNickname()).isEqualTo("test2");
     }
 
     @Test
     void user를_로그인_시키면_마지막_로그인_시간이_변경된다() {
         userService.login(1L);
 
-        UserEntity userEntity = userService.getById(1L);
-        Assertions.assertThat(userEntity.getLastLoginAt()).isGreaterThan(0L);
+        User user = userService.getById(1L);
+        Assertions.assertThat(user.getLastLoginAt()).isGreaterThan(0L);
         // 최종 로그인 시간을 테스트할 수 있는 방법이 현재 없음
     }
 
@@ -109,8 +109,8 @@ class UserServiceTest {
     void PENDING_상태의_사용자는_인증_코드로_ACTIVE_시킬_수_있다() {
         userService.verifyEmail(2, "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaab");
 
-        UserEntity userEntity = userService.getById(2L);
-        Assertions.assertThat(userEntity.getStatus()).isEqualTo(UserStatus.ACTIVE);
+        User user = userService.getById(2L);
+        Assertions.assertThat(user.getStatus()).isEqualTo(UserStatus.ACTIVE);
     }
 
     @Test
