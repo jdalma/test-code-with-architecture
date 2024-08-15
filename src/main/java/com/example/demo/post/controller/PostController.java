@@ -3,7 +3,7 @@ package com.example.demo.post.controller;
 import com.example.demo.user.controller.UserController;
 import com.example.demo.post.controller.response.PostResponse;
 import com.example.demo.post.domain.PostUpdate;
-import com.example.demo.post.repository.PostEntity;
+import com.example.demo.post.infrastructure.PostEntity;
 import com.example.demo.post.service.PostService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

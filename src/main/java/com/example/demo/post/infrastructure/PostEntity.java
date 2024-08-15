@@ -1,4 +1,4 @@
-package com.example.demo.post.repository;
+package com.example.demo.post.infrastructure;
 
 import com.example.demo.user.infrastructure.UserEntity;
 import jakarta.persistence.Column;

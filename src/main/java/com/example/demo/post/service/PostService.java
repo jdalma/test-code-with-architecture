@@ -3,8 +3,9 @@ package com.example.demo.post.service;
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
 import com.example.demo.post.domain.PostCreate;
 import com.example.demo.post.domain.PostUpdate;
-import com.example.demo.post.repository.PostEntity;
-import com.example.demo.post.repository.PostJpaRepository;
+import com.example.demo.post.infrastructure.PostEntity;
+import com.example.demo.post.infrastructure.PostJpaRepository;
+import com.example.demo.post.service.port.PostRepository;
 import com.example.demo.user.infrastructure.UserEntity;
 import java.time.Clock;
 
@@ -16,11 +17,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PostService {
 
-    private final PostJpaRepository postJpaRepository;
+    private final PostRepository postRepository;
     private final UserService userService;
 
     public PostEntity getById(long id) {
-        return postJpaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Posts", id));
+        return postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Posts", id));
     }
 
     public PostEntity create(PostCreate postCreate) {
@@ -29,13 +30,13 @@ public class PostService {
         postEntity.setWriter(userEntity);
         postEntity.setContent(postCreate.getContent());
         postEntity.setCreatedAt(Clock.systemUTC().millis());
-        return postJpaRepository.save(postEntity);
+        return postRepository.save(postEntity);
     }
 
     public PostEntity update(long id, PostUpdate postUpdate) {
         PostEntity postEntity = getById(id);
         postEntity.setContent(postUpdate.getContent());
         postEntity.setModifiedAt(Clock.systemUTC().millis());
-        return postJpaRepository.save(postEntity);
+        return postRepository.save(postEntity);
     }
 }
