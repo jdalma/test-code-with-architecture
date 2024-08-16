@@ -3,6 +3,7 @@ package com.example.demo.post.service;
 import com.example.demo.mock.FakePostRepository;
 import com.example.demo.mock.FakeUserRepository;
 import com.example.demo.mock.TestClockHolder;
+import com.example.demo.post.controller.port.PostService;
 import com.example.demo.post.domain.Post;
 import com.example.demo.post.domain.PostCreate;
 import com.example.demo.post.domain.PostUpdate;
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class PostServiceTest {
+public class PostServiceImplTest {
 
     private PostService postService;
 
@@ -21,7 +22,7 @@ public class PostServiceTest {
     void init() {
         FakePostRepository fakePostRepository = new FakePostRepository();
         FakeUserRepository fakeUserRepository = new FakeUserRepository();
-        this.postService = new PostService(
+        this.postService = new PostServiceImpl(
             fakeUserRepository,
             fakePostRepository,
             new TestClockHolder(123456L)
