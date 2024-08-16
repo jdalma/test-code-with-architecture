@@ -1,7 +1,7 @@
 package com.example.demo.post.service;
 
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
-import com.example.demo.common.serivce.port.ClockHolder;
+import com.example.demo.common.domain.ClockHolder;
 import com.example.demo.post.controller.port.PostService;
 import com.example.demo.post.domain.Post;
 import com.example.demo.post.domain.PostCreate;

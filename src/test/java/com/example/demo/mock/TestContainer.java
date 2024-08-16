@@ -1,7 +1,7 @@
 package com.example.demo.mock;
 
-import com.example.demo.common.serivce.port.ClockHolder;
-import com.example.demo.common.serivce.port.UuidHolder;
+import com.example.demo.common.domain.ClockHolder;
+import com.example.demo.common.domain.UuidHolder;
 import com.example.demo.post.controller.PostController;
 import com.example.demo.post.controller.PostCreateController;
 import com.example.demo.post.controller.port.PostService;

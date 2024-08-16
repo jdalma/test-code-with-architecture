@@ -1,8 +1,8 @@
 package com.example.demo.user.service;
 
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
-import com.example.demo.common.serivce.port.ClockHolder;
-import com.example.demo.common.serivce.port.UuidHolder;
+import com.example.demo.common.domain.ClockHolder;
+import com.example.demo.common.domain.UuidHolder;
 import com.example.demo.user.controller.port.*;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;

@@ -1,6 +1,6 @@
 package com.example.demo.common.infrastructure;
 
-import com.example.demo.common.serivce.port.ClockHolder;
+import com.example.demo.common.domain.ClockHolder;
 import org.springframework.stereotype.Component;
 
 import java.time.Clock;

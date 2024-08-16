@@ -1,6 +1,6 @@
 package com.example.demo.mock;
 
-import com.example.demo.common.serivce.port.ClockHolder;
+import com.example.demo.common.domain.ClockHolder;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

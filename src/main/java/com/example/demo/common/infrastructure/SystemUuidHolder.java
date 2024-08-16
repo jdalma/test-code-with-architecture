@@ -1,6 +1,6 @@
 package com.example.demo.common.infrastructure;
 
-import com.example.demo.common.serivce.port.UuidHolder;
+import com.example.demo.common.domain.UuidHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

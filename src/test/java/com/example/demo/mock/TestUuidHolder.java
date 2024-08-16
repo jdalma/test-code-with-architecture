@@ -1,6 +1,6 @@
 package com.example.demo.mock;
 
-import com.example.demo.common.serivce.port.UuidHolder;
+import com.example.demo.common.domain.UuidHolder;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

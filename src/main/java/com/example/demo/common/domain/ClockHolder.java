@@ -1,4 +1,4 @@
-package com.example.demo.common.serivce.port;
+package com.example.demo.common.domain;
 
 public interface ClockHolder {
 

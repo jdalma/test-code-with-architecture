@@ -1,8 +1,8 @@
 package com.example.demo.user.domain;
 
 import com.example.demo.common.domain.exception.CertificationCodeNotMatchedException;
-import com.example.demo.common.serivce.port.ClockHolder;
-import com.example.demo.common.serivce.port.UuidHolder;
+import com.example.demo.common.domain.ClockHolder;
+import com.example.demo.common.domain.UuidHolder;
 import lombok.Builder;
 import lombok.Getter;
 

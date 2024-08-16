@@ -1,6 +1,6 @@
 package com.example.demo.post.domain;
 
-import com.example.demo.common.serivce.port.ClockHolder;
+import com.example.demo.common.domain.ClockHolder;
 import com.example.demo.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
